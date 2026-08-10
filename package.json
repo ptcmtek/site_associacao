@@ -1,0 +1,31 @@
+{
+  "name": "associacao-pais-pardilho-video",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "remotion studio src/index.ts",
+    "build": "remotion bundle src/index.ts",
+    "build:site": "node scripts/build_site.mjs",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm run build",
+    "render:16x9": "remotion render src/index.ts AssociacaoPais-16x9 out/associacao-pais-pt-16x9.mp4",
+    "render:9x16": "remotion render src/index.ts AssociacaoPais-9x16 out/associacao-pais-pt-9x16.mp4",
+    "render:en:16x9": "remotion render src/index.ts AssociacaoPais-EN-16x9 out/associacao-pais-en-16x9.mp4",
+    "render:en:9x16": "remotion render src/index.ts AssociacaoPais-EN-9x16 out/associacao-pais-en-9x16.mp4",
+    "render:temporary:pt:9x16": "remotion render src/index.ts AssociacaoPais-Temporaria-9x16 out/associacao-pais-temporaria-sem-datas-pt-9x16.mp4",
+    "render:temporary:en:9x16": "remotion render src/index.ts AssociacaoPais-Temporary-EN-9x16 out/associacao-pais-temporary-no-dates-en-9x16.mp4",
+    "render:frames": "remotion still src/index.ts AssociacaoPais-16x9 out/preview-16x9.png --frame=1900 && remotion still src/index.ts AssociacaoPais-9x16 out/preview-9x16.png --frame=1900"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.506",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "4.0.506"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "typescript": "^5.7.2"
+  }
+}

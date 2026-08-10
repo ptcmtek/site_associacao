@@ -1,0 +1,8 @@
+node_modules/
+.pnpm-store/
+out/
+build/
+dist/
+outputs/
+.DS_Store
+npm-debug.log*
