@@ -16,7 +16,17 @@ export async function onRequestPost({request, env}) {
   if (required.some((value) => typeof value !== 'string' || !value.trim())) {
     return json({error: 'missing_required_fields'}, 400);
   }
-  if (children.length < 1 || children.length > 5 || children.some((child) => !child?.name?.trim() || !child?.className?.trim())) {
+  const email = payload.email.trim();
+  const phone = payload.phone.replace(/[\s()-]/g, '');
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return json({error: 'invalid_email'}, 400);
+  }
+  if (!/^(?:\+351)?9\d{8}$/.test(phone)) {
+    return json({error: 'invalid_phone'}, 400);
+  }
+  if (children.length < 1 || children.length > 5 || children.some((child) =>
+    !child?.name?.trim() || !/^[1-9][ABC]$/.test(child?.className)
+  )) {
     return json({error: 'invalid_children'}, 400);
   }
   if (!env.REGISTRATION_WEBHOOK_URL) {
@@ -28,6 +38,8 @@ export async function onRequestPost({request, env}) {
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
       ...payload,
+      email,
+      phone,
       submittedAt: new Date().toISOString(),
       children: children.slice(0, 5),
     }),

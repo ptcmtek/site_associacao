@@ -1,5 +1,26 @@
 const video = document.querySelector('#association-video');
 const portraitQuery = window.matchMedia('(orientation: portrait) and (max-width: 820px)');
+const language = document.documentElement.lang.toLowerCase().startsWith('en') ? 'en' : 'pt';
+const copy = {
+  pt: {
+    childName: (number) => `Filho ${number} — nome`,
+    className: 'Ano/turma',
+    select: 'Seleciona',
+    invalidPhone: 'Introduz um telemóvel português válido, por exemplo 912 345 678.',
+    sending: 'A enviar a inscrição…',
+    error: 'Ainda não foi possível enviar. Tenta novamente dentro de momentos.',
+    reference: 'Referência',
+  },
+  en: {
+    childName: (number) => `Child ${number} — name`,
+    className: 'Year/class',
+    select: 'Select',
+    invalidPhone: 'Enter a valid Portuguese mobile number, for example 912 345 678.',
+    sending: 'Submitting your registration…',
+    error: 'We could not submit your registration. Please try again in a moment.',
+    reference: 'Reference',
+  },
+}[language];
 
 function selectVideo() {
   if (!video) return;
@@ -20,8 +41,8 @@ function selectVideo() {
 selectVideo();
 portraitQuery.addEventListener?.('change', selectVideo);
 
-const formDrawer = document.querySelector('#inscricao.form-drawer');
-const formLinks = document.querySelectorAll('a[href="#inscricao"]');
+const formDrawer = document.querySelector('.form-drawer');
+const formLinks = document.querySelectorAll('a[href="#inscricao"], a[href="#registration"]');
 
 function openFormDrawer() {
   if (!formDrawer) return;
@@ -29,13 +50,49 @@ function openFormDrawer() {
 }
 
 formLinks.forEach((link) => link.addEventListener('click', openFormDrawer));
-if (window.location.hash === '#inscricao') openFormDrawer();
+if (formDrawer && window.location.hash === `#${formDrawer.id}`) openFormDrawer();
 
 const membershipForm = document.querySelector('#membership-form');
 const childrenList = document.querySelector('#children-list');
 const childrenQuantity = document.querySelector('#children-quantity');
 const formMessage = document.querySelector('#form-message');
+const registrationSuccess = document.querySelector('#registration-success');
+const successReference = document.querySelector('#success-reference');
+const closeSuccess = document.querySelector('#close-success');
+const phoneInput = membershipForm?.querySelector('[name="phone"]');
 const maxChildren = 5;
+const classOptions = Array.from({length: 9}, (_, year) =>
+  ['A', 'B', 'C'].map((classLetter) => `${year + 1}${classLetter}`)
+).flat();
+
+function normalizePhone(value) {
+  return value.replace(/[\s()-]/g, '');
+}
+
+function validatePhone() {
+  if (!phoneInput) return;
+  const normalized = normalizePhone(phoneInput.value);
+  const isValid = /^(?:\+351)?9\d{8}$/.test(normalized);
+  phoneInput.setCustomValidity(isValid || !phoneInput.value ? '' : copy.invalidPhone);
+}
+
+phoneInput?.addEventListener('input', validatePhone);
+
+function showRegistrationSuccess(memberId) {
+  if (formDrawer) formDrawer.open = false;
+  if (successReference) {
+    successReference.hidden = !memberId;
+    successReference.textContent = memberId ? `${copy.reference}: ${memberId}` : '';
+  }
+  if (!registrationSuccess) return;
+  if (typeof registrationSuccess.showModal === 'function') registrationSuccess.showModal();
+  else registrationSuccess.setAttribute('open', '');
+}
+
+closeSuccess?.addEventListener('click', () => {
+  if (typeof registrationSuccess?.close === 'function') registrationSuccess.close();
+  else registrationSuccess?.removeAttribute('open');
+});
 
 function renderChildren(quantity) {
   if (!childrenList) return;
@@ -47,8 +104,13 @@ function renderChildren(quantity) {
     const row = document.createElement('div');
     row.className = 'child-row';
     row.innerHTML = `
-      <label>Filho ${index + 1} — nome<input name="childName" required /></label>
-      <label>Ano/turma<input name="childClass" required /></label>
+      <label>${copy.childName(index + 1)}<input name="childName" required /></label>
+      <label>${copy.className}
+        <select name="childClass" required>
+          <option value="" disabled selected>${copy.select}</option>
+          ${classOptions.map((value) => `<option value="${value}">${value}</option>`).join('')}
+        </select>
+      </label>
     `;
     row.querySelector('[name="childName"]').value = previousNames[index] || '';
     row.querySelector('[name="childClass"]').value = previousClasses[index] || '';
@@ -67,15 +129,15 @@ membershipForm?.addEventListener('submit', async (event) => {
   const payload = {
     registrationType: data.get('registrationType'),
     fullName: data.get('fullName'),
-    email: data.get('email'),
-    phone: data.get('phone'),
+    email: data.get('email').trim(),
+    phone: normalizePhone(data.get('phone')),
     children: childNames.map((name, index) => ({name, className: childClasses[index]})),
     internalCommunication: data.get('internalCommunication') === 'on',
   };
 
   submitButton.disabled = true;
   formMessage.hidden = false;
-  formMessage.textContent = 'A enviar a inscrição…';
+  formMessage.textContent = copy.sending;
   try {
     const response = await fetch('/api/inscricoes', {
       method: 'POST',
@@ -83,11 +145,13 @@ membershipForm?.addEventListener('submit', async (event) => {
       body: JSON.stringify(payload),
     });
     if (!response.ok) throw new Error('submission_failed');
-    formMessage.textContent = 'Inscrição enviada com sucesso.';
+    const result = await response.json();
+    formMessage.hidden = true;
     membershipForm.reset();
     childrenList.replaceChildren();
+    showRegistrationSuccess(result.memberId);
   } catch {
-    formMessage.textContent = 'Ainda não foi possível enviar. Tenta novamente dentro de momentos.';
+    formMessage.textContent = copy.error;
   } finally {
     submitButton.disabled = false;
   }

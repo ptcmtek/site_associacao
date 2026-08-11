@@ -10,6 +10,8 @@ await fs.mkdir(path.join(destination, 'assets', 'videos'), {recursive: true});
 await fs.mkdir(path.join(destination, 'assets', 'images'), {recursive: true});
 await fs.mkdir(path.join(destination, 'assets', 'documents'), {recursive: true});
 await fs.mkdir(path.join(destination, 'socio'), {recursive: true});
+await fs.mkdir(path.join(destination, 'en'), {recursive: true});
+await fs.mkdir(path.join(destination, 'en', 'member'), {recursive: true});
 
 for (const page of ['index.html', 'socio.html']) {
   const html = await fs.readFile(path.join(source, page), 'utf8');
@@ -21,6 +23,14 @@ for (const page of ['index.html', 'socio.html']) {
     await fs.writeFile(path.join(destination, 'socio', 'index.html'), deployHtml, 'utf8');
   }
 }
+
+for (const [sourcePage, destinationPage] of [
+  ['index.html', path.join('en', 'index.html')],
+  ['member.html', path.join('en', 'member', 'index.html')],
+]) {
+  const html = await fs.readFile(path.join(source, 'en', sourcePage), 'utf8');
+  await fs.writeFile(path.join(destination, destinationPage), html, 'utf8');
+}
 await fs.copyFile(path.join(source, 'styles.css'), path.join(destination, 'styles.css'));
 await fs.copyFile(path.join(source, 'script.js'), path.join(destination, 'script.js'));
 await fs.copyFile(path.join(source, '_redirects'), path.join(destination, '_redirects'));
@@ -31,6 +41,14 @@ await fs.copyFile(
 await fs.copyFile(
   path.join(root, 'public', 'site', 'videos', 'associacao-pais-pt-9x16.mp4'),
   path.join(destination, 'assets', 'videos', 'associacao-pais-pt-9x16.mp4'),
+);
+await fs.copyFile(
+  path.join(root, 'public', 'site', 'videos', 'associacao-pais-en-16x9.mp4'),
+  path.join(destination, 'assets', 'videos', 'associacao-pais-en-16x9.mp4'),
+);
+await fs.copyFile(
+  path.join(root, 'public', 'site', 'videos', 'associacao-pais-en-9x16.mp4'),
+  path.join(destination, 'assets', 'videos', 'associacao-pais-en-9x16.mp4'),
 );
 await fs.copyFile(
   path.join(root, 'public', 'images', 'familias-escola.png'),

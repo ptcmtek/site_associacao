@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Inscrição de sócio da Associação de Pais da Escola de Pardilhó." />
     <title>Ser sócio — Associação de Pais de Pardilhó</title>
+    <link rel="canonical" href="https://associacao-pais-pardilho.pages.dev/socio/" />
+    <link rel="alternate" hreflang="pt-PT" href="https://associacao-pais-pardilho.pages.dev/socio/" />
+    <link rel="alternate" hreflang="en" href="https://associacao-pais-pardilho.pages.dev/en/member/" />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
@@ -18,6 +21,7 @@
         <a href="#video">Vídeo</a>
         <a href="#associacao">A Associação</a>
         <a class="nav-cta" href="#inscricao">Ser sócio</a>
+        <span class="language-switch" aria-label="Idioma"><strong>PT</strong><span aria-hidden="true">|</span><a href="/en/member/" lang="en">EN</a></span>
       </nav>
     </header>
 
@@ -54,10 +58,10 @@
               <fieldset>
                 <legend>Dados do sócio</legend>
                 <label>Tipo de inscrição<select name="registrationType" required><option value="Novo sócio">Novo sócio</option><option value="Renovação">Renovação</option></select></label>
-                <label>Nome completo<input name="fullName" autocomplete="name" required /></label>
+                <label>Nome completo <span class="required-label">obrigatório</span><input name="fullName" autocomplete="name" required /></label>
                 <div class="field-row">
-                  <label>Email<input name="email" type="email" autocomplete="email" required /></label>
-                  <label>Telemóvel<input name="phone" type="tel" autocomplete="tel" required /></label>
+                  <label>Email <span class="required-label">obrigatório</span><input name="email" type="email" autocomplete="email" placeholder="nome@exemplo.pt" required /></label>
+                  <label>Telemóvel <span class="required-label">obrigatório</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="912 345 678" pattern="(?:\+351\s?)?9(?:[\s-]?\d){8}" title="Introduz um telemóvel português válido, por exemplo 912 345 678." required /></label>
                 </div>
               </fieldset>
 
@@ -86,6 +90,15 @@
             </form>
           </div>
         </details>
+
+        <dialog class="registration-success" id="registration-success" aria-labelledby="registration-success-title">
+          <div class="success-icon" aria-hidden="true">✓</div>
+          <p class="eyebrow">Inscrição concluída</p>
+          <h2 id="registration-success-title">Obrigado por fazeres parte.</h2>
+          <p>Recebemos a tua inscrição. A Associação de Pais entrará em contacto sempre que for necessário.</p>
+          <p class="success-reference" id="success-reference" hidden></p>
+          <button class="button primary" id="close-success" type="button">Continuar</button>
+        </dialog>
       </section>
 
       <section class="section video-section" id="video">
@@ -108,6 +121,6 @@
     </main>
 
     <footer><p>© <span id="year"></span> Associação de Pais da Escola de Pardilhó</p><div><a href="/">Início</a><a href="/assets/documents/estatutos-associacao-pais-pardilho.pdf" target="_blank">Estatutos</a><a href="https://www.facebook.com/associacao.escolapardilho" target="_blank" rel="noopener">Facebook</a><a href="#">Privacidade</a></div></footer>
-    <script src="/script.js?v=2"></script>
+    <script src="/script.js?v=3"></script>
   </body>
 </html>
