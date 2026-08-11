@@ -33,6 +33,7 @@ for (const [sourcePage, destinationPage] of [
 }
 await fs.copyFile(path.join(source, 'styles.css'), path.join(destination, 'styles.css'));
 await fs.copyFile(path.join(source, 'script.js'), path.join(destination, 'script.js'));
+await fs.copyFile(path.join(source, 'country-codes.js'), path.join(destination, 'country-codes.js'));
 await fs.copyFile(path.join(source, '_redirects'), path.join(destination, '_redirects'));
 await fs.copyFile(
   path.join(root, 'public', 'site', 'videos', 'associacao-pais-pt-16x9.mp4'),
