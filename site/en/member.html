@@ -45,7 +45,7 @@
                 <label>Full name <span class="required-label">required</span><input name="fullName" autocomplete="name" required /></label>
                 <div class="field-row">
                   <label>Email <span class="required-label">required</span><input name="email" type="email" autocomplete="email" placeholder="name@example.com" required /></label>
-                  <label>Mobile number <span class="required-label">required</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" value="+351 " placeholder="+351 912 345 678" title="Enter a valid number including its international country code." required /><small class="field-help">Portugal (+351) by default. Replace it with the relevant country code for another country.</small></label>
+                  <label>Mobile number <span class="required-label">required</span><span class="phone-control"><select name="countryCode" aria-label="Country calling code"><option value="+351" selected>🇵🇹 Portugal (+351)</option></select><input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="912 345 678" title="Enter a valid mobile number." required /></span><small class="field-help">Select the country and enter the number without its country code.</small></label>
                 </div>
               </fieldset>
               <fieldset>
@@ -74,6 +74,7 @@
     </main>
 
     <footer><p>© <span id="year"></span> Parents' Association of Pardilhó School</p><div><a href="/en/">Home</a><a href="/assets/documents/estatutos-associacao-pais-pardilho.pdf" target="_blank">Statutes (PT)</a><a href="https://www.facebook.com/associacao.escolapardilho" target="_blank" rel="noopener">Facebook</a><a href="#">Privacy</a></div></footer>
-    <script src="/script.js?v=3"></script>
+    <script src="/country-codes.js?v=1"></script>
+    <script src="/script.js?v=4"></script>
   </body>
 </html>

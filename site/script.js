@@ -60,25 +60,51 @@ const registrationSuccess = document.querySelector('#registration-success');
 const successReference = document.querySelector('#success-reference');
 const closeSuccess = document.querySelector('#close-success');
 const phoneInput = membershipForm?.querySelector('[name="phone"]');
+const countryCodeSelect = membershipForm?.querySelector('[name="countryCode"]');
 const maxChildren = 5;
 const classOptions = Array.from({length: 9}, (_, year) =>
   ['A', 'B', 'C'].map((classLetter) => `${year + 1}${classLetter}`)
 ).flat();
 
-function normalizePhone(value) {
+function countryFlag(iso) {
+  return iso.replace(/./g, (letter) => String.fromCodePoint(127397 + letter.charCodeAt(0)));
+}
+
+function populateCountryCodes() {
+  if (!countryCodeSelect || !window.COUNTRY_CALLING_CODES) return;
+  const displayNames = new Intl.DisplayNames([language === 'pt' ? 'pt-PT' : 'en'], {type: 'region'});
+  const countries = [...window.COUNTRY_CALLING_CODES].sort(([isoA], [isoB]) => {
+    if (isoA === 'PT') return -1;
+    if (isoB === 'PT') return 1;
+    return displayNames.of(isoA).localeCompare(displayNames.of(isoB), language);
+  });
+  countryCodeSelect.replaceChildren(...countries.map(([iso, code]) => {
+    const option = document.createElement('option');
+    option.value = code;
+    option.textContent = `${countryFlag(iso)} ${displayNames.of(iso)} (${code})`;
+    option.selected = iso === 'PT';
+    return option;
+  }));
+}
+
+populateCountryCodes();
+
+function normalizePhone(value, countryCode = '') {
   const compact = value.replace(/[\s().-]/g, '');
-  if (/^9\d{8}$/.test(compact)) return `+351${compact}`;
-  return compact.startsWith('00') ? `+${compact.slice(2)}` : compact;
+  if (compact.startsWith('+')) return compact;
+  if (compact.startsWith('00')) return `+${compact.slice(2)}`;
+  return countryCode ? `${countryCode}${compact}` : compact;
 }
 
 function validatePhone() {
   if (!phoneInput) return;
-  const normalized = normalizePhone(phoneInput.value);
+  const normalized = normalizePhone(phoneInput.value, countryCodeSelect?.value);
   const isValid = /^\+[1-9]\d{7,14}$/.test(normalized);
   phoneInput.setCustomValidity(isValid || !phoneInput.value ? '' : copy.invalidPhone);
 }
 
 phoneInput?.addEventListener('input', validatePhone);
+countryCodeSelect?.addEventListener('change', validatePhone);
 membershipForm?.addEventListener('reset', () => requestAnimationFrame(validatePhone));
 validatePhone();
 
@@ -134,7 +160,7 @@ membershipForm?.addEventListener('submit', async (event) => {
     registrationType: data.get('registrationType'),
     fullName: data.get('fullName'),
     email: data.get('email').trim(),
-    phone: normalizePhone(data.get('phone')),
+    phone: normalizePhone(data.get('phone'), data.get('countryCode')),
     children: childNames.map((name, index) => ({name, className: childClasses[index]})),
     internalCommunication: data.get('internalCommunication') === 'on',
   };

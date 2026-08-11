@@ -63,7 +63,7 @@
                 <label>Nome completo <span class="required-label">obrigatório</span><input name="fullName" autocomplete="name" required /></label>
                 <div class="field-row">
                   <label>Email <span class="required-label">obrigatório</span><input name="email" type="email" autocomplete="email" placeholder="nome@exemplo.pt" required /></label>
-                  <label>Telemóvel <span class="required-label">obrigatório</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" value="+351 " placeholder="+351 912 345 678" title="Introduz um número válido com indicativo internacional." required /><small class="field-help">Portugal (+351) por defeito. Para outro país, substitui pelo respetivo indicativo.</small></label>
+                  <label>Telemóvel <span class="required-label">obrigatório</span><span class="phone-control"><select name="countryCode" aria-label="Indicativo do país"><option value="+351" selected>🇵🇹 Portugal (+351)</option></select><input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="912 345 678" title="Introduz um número de telemóvel válido." required /></span><small class="field-help">Seleciona o país e introduz o número sem o indicativo.</small></label>
                 </div>
               </fieldset>
 
@@ -123,6 +123,7 @@
     </main>
 
     <footer><p>© <span id="year"></span> Associação de Pais da Escola de Pardilhó</p><div><a href="/">Início</a><a href="/assets/documents/estatutos-associacao-pais-pardilho.pdf" target="_blank">Estatutos</a><a href="https://www.facebook.com/associacao.escolapardilho" target="_blank" rel="noopener">Facebook</a><a href="#">Privacidade</a></div></footer>
-    <script src="/script.js?v=3"></script>
+    <script src="/country-codes.js?v=1"></script>
+    <script src="/script.js?v=4"></script>
   </body>
 </html>
