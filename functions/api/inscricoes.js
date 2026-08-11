@@ -34,5 +34,12 @@ export async function onRequestPost({request, env}) {
   });
 
   if (!response.ok) return json({error: 'registration_service_failed'}, 502);
-  return json({ok: true});
+  let result;
+  try {
+    result = await response.json();
+  } catch {
+    return json({error: 'invalid_registration_service_response'}, 502);
+  }
+  if (!result?.ok) return json({error: 'registration_service_rejected'}, 502);
+  return json({ok: true, memberId: result.memberId});
 }
