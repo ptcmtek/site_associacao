@@ -46,12 +46,14 @@ h2 { font-size: clamp(2.1rem, 4vw, 4rem); }
 .button { display: inline-flex; justify-content: center; align-items: center; min-height: 50px; padding: 0 22px; border: 2px solid transparent; border-radius: 999px; font: inherit; font-weight: 850; text-decoration: none; cursor: pointer; }
 .primary { background: var(--blue); color: white; }
 .primary:hover { background: #0667e8; }
-.attention-cta { position: relative; isolation: isolate; gap: 10px; overflow: hidden; box-shadow: 0 0 0 0 rgba(22,119,255,.35), 0 14px 32px rgba(22,119,255,.28); animation: cta-pulse 2.8s ease-out infinite; }
+.attention-cta { position: relative; isolation: isolate; gap: 18px; min-height: 66px; padding: 8px 22px 8px 26px; overflow: hidden; border: 3px solid rgba(255,255,255,.9); background: linear-gradient(135deg, #0667e8, #1685ff 60%, #20a779); box-shadow: 0 0 0 0 rgba(22,119,255,.42), 0 18px 40px rgba(22,119,255,.36); animation: cta-pulse 2.5s ease-out infinite; }
 .attention-cta::before { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(110deg, transparent 18%, rgba(255,255,255,.34) 45%, transparent 72%); transform: translateX(-130%); animation: cta-shine 3.8s ease-in-out infinite; }
-.attention-cta span { font-size: 1.2em; transition: transform .2s ease; }
-.attention-cta:hover { transform: translateY(-2px); box-shadow: 0 18px 38px rgba(22,119,255,.36); }
-.attention-cta:hover span { transform: translateX(4px); }
-@keyframes cta-pulse { 0%, 65%, 100% { box-shadow: 0 0 0 0 rgba(22,119,255,.3), 0 14px 32px rgba(22,119,255,.28); } 82% { box-shadow: 0 0 0 10px rgba(22,119,255,0), 0 14px 32px rgba(22,119,255,.28); } }
+.attention-cta .cta-label { display: grid; gap: 0; line-height: 1.1; text-align: left; }
+.attention-cta .cta-label small { color: #dff8ef; font-size: .62rem; font-weight: 950; letter-spacing: .13em; text-transform: uppercase; }
+.attention-cta .cta-arrow { display: grid; width: 36px; height: 36px; place-items: center; border-radius: 50%; background: white; color: var(--blue); font-size: 1.25rem; transition: transform .2s ease; }
+.attention-cta:hover { transform: translateY(-3px) scale(1.015); background: linear-gradient(135deg, #055fcf, #0878ef 60%, #168f69); box-shadow: 0 22px 46px rgba(22,119,255,.44); }
+.attention-cta:hover .cta-arrow { transform: translateX(4px); }
+@keyframes cta-pulse { 0%, 62%, 100% { box-shadow: 0 0 0 0 rgba(22,119,255,.36), 0 18px 40px rgba(22,119,255,.36); } 80% { box-shadow: 0 0 0 13px rgba(22,119,255,0), 0 18px 40px rgba(22,119,255,.36); } }
 @keyframes cta-shine { 0%, 55% { transform: translateX(-130%); } 75%, 100% { transform: translateX(130%); } }
 .secondary { border-color: var(--line); background: white; }
 .hero-card { position: relative; display: grid; gap: 14px; transform: rotate(3deg); }
