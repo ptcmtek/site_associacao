@@ -20,8 +20,8 @@ Usar este endereço no QR de inscrição:
 
 `https://associacao-pais-pardilho.pages.dev/socio`
 
-O destino é controlado pelo ficheiro `_redirects`. Quando existir um domínio
-definitivo, alterar apenas o destino nesse ficheiro; o QR impresso continua válido.
+A página é servida diretamente em `/socio/`. Quando existir um domínio definitivo,
+adicionar o novo destino ao ficheiro `_redirects`; o QR impresso continua válido.
 
 ## Antes de publicar
 

@@ -8,13 +8,17 @@ const destination = path.join(root, 'dist');
 await fs.rm(destination, {recursive: true, force: true});
 await fs.mkdir(path.join(destination, 'assets', 'videos'), {recursive: true});
 await fs.mkdir(path.join(destination, 'assets', 'images'), {recursive: true});
+await fs.mkdir(path.join(destination, 'socio'), {recursive: true});
 
 for (const page of ['index.html', 'socio.html']) {
   const html = await fs.readFile(path.join(source, page), 'utf8');
   const deployHtml = html
-    .replaceAll('../out/', 'assets/videos/')
-    .replaceAll('../public/images/', 'assets/images/');
+    .replaceAll('../out/', '/assets/videos/')
+    .replaceAll('../public/images/', '/assets/images/');
   await fs.writeFile(path.join(destination, page), deployHtml, 'utf8');
+  if (page === 'socio.html') {
+    await fs.writeFile(path.join(destination, 'socio', 'index.html'), deployHtml, 'utf8');
+  }
 }
 await fs.copyFile(path.join(source, 'styles.css'), path.join(destination, 'styles.css'));
 await fs.copyFile(path.join(source, 'script.js'), path.join(destination, 'script.js'));
