@@ -45,7 +45,7 @@
                 <label>Full name <span class="required-label">required</span><input name="fullName" autocomplete="name" required /></label>
                 <div class="field-row">
                   <label>Email <span class="required-label">required</span><input name="email" type="email" autocomplete="email" placeholder="name@example.com" required /></label>
-                  <label>Mobile number <span class="required-label">required</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="912 345 678" pattern="(?:\+351\s?)?9(?:[\s-]?\d){8}" title="Enter a valid Portuguese mobile number, for example 912 345 678." required /></label>
+                  <label>Mobile number <span class="required-label">required</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" value="+351 " placeholder="+351 912 345 678" title="Enter a valid number including its international country code." required /><small class="field-help">Portugal (+351) by default. Replace it with the relevant country code for another country.</small></label>
                 </div>
               </fieldset>
               <fieldset>

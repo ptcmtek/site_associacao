@@ -6,7 +6,7 @@ const copy = {
     childName: (number) => `Filho ${number} — nome`,
     className: 'Ano/turma',
     select: 'Seleciona',
-    invalidPhone: 'Introduz um telemóvel português válido, por exemplo 912 345 678.',
+    invalidPhone: 'Introduz um número válido, incluindo o indicativo internacional (por exemplo, +351 912 345 678).',
     sending: 'A enviar a inscrição…',
     error: 'Ainda não foi possível enviar. Tenta novamente dentro de momentos.',
     reference: 'Referência',
@@ -15,7 +15,7 @@ const copy = {
     childName: (number) => `Child ${number} — name`,
     className: 'Year/class',
     select: 'Select',
-    invalidPhone: 'Enter a valid Portuguese mobile number, for example 912 345 678.',
+    invalidPhone: 'Enter a valid number including its international country code (for example, +351 912 345 678).',
     sending: 'Submitting your registration…',
     error: 'We could not submit your registration. Please try again in a moment.',
     reference: 'Reference',
@@ -66,17 +66,21 @@ const classOptions = Array.from({length: 9}, (_, year) =>
 ).flat();
 
 function normalizePhone(value) {
-  return value.replace(/[\s()-]/g, '');
+  const compact = value.replace(/[\s().-]/g, '');
+  if (/^9\d{8}$/.test(compact)) return `+351${compact}`;
+  return compact.startsWith('00') ? `+${compact.slice(2)}` : compact;
 }
 
 function validatePhone() {
   if (!phoneInput) return;
   const normalized = normalizePhone(phoneInput.value);
-  const isValid = /^(?:\+351)?9\d{8}$/.test(normalized);
+  const isValid = /^\+[1-9]\d{7,14}$/.test(normalized);
   phoneInput.setCustomValidity(isValid || !phoneInput.value ? '' : copy.invalidPhone);
 }
 
 phoneInput?.addEventListener('input', validatePhone);
+membershipForm?.addEventListener('reset', () => requestAnimationFrame(validatePhone));
+validatePhone();
 
 function showRegistrationSuccess(memberId) {
   if (formDrawer) formDrawer.open = false;

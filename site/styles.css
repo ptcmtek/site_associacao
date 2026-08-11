@@ -131,6 +131,7 @@ form { padding: 34px; border: 1px solid var(--line); border-radius: var(--radius
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 label { display: grid; gap: 7px; margin-bottom: 18px; font-size: .92rem; font-weight: 750; }
 .required-label { justify-self: start; margin-top: -2px; color: var(--muted); font-size: .72rem; font-weight: 600; }
+.field-help { color: var(--muted); font-size: .78rem; font-weight: 500; line-height: 1.4; }
 input, select { width: 100%; min-height: 48px; padding: 10px 13px; border: 1px solid #bdcbd8; border-radius: 11px; background: white; color: var(--navy); font: inherit; }
 input:focus, select:focus { outline: 3px solid rgba(22,119,255,.18); border-color: var(--blue); }
 .check { grid-template-columns: auto 1fr; align-items: start; color: var(--muted); font-weight: 500; }

@@ -17,11 +17,11 @@ export async function onRequestPost({request, env}) {
     return json({error: 'missing_required_fields'}, 400);
   }
   const email = payload.email.trim();
-  const phone = payload.phone.replace(/[\s()-]/g, '');
+  const phone = normalizePhone(payload.phone);
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return json({error: 'invalid_email'}, 400);
   }
-  if (!/^(?:\+351)?9\d{8}$/.test(phone)) {
+  if (!/^\+[1-9]\d{7,14}$/.test(phone)) {
     return json({error: 'invalid_phone'}, 400);
   }
   if (children.length < 1 || children.length > 5 || children.some((child) =>
@@ -54,4 +54,10 @@ export async function onRequestPost({request, env}) {
   }
   if (!result?.ok) return json({error: 'registration_service_rejected'}, 502);
   return json({ok: true, memberId: result.memberId});
+}
+
+function normalizePhone(value) {
+  const compact = value.replace(/[\s().-]/g, '');
+  if (/^9\d{8}$/.test(compact)) return `+351${compact}`;
+  return compact.startsWith('00') ? `+${compact.slice(2)}` : compact;
 }

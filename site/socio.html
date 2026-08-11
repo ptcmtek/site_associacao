@@ -63,7 +63,7 @@
                 <label>Nome completo <span class="required-label">obrigatório</span><input name="fullName" autocomplete="name" required /></label>
                 <div class="field-row">
                   <label>Email <span class="required-label">obrigatório</span><input name="email" type="email" autocomplete="email" placeholder="nome@exemplo.pt" required /></label>
-                  <label>Telemóvel <span class="required-label">obrigatório</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="912 345 678" pattern="(?:\+351\s?)?9(?:[\s-]?\d){8}" title="Introduz um telemóvel português válido, por exemplo 912 345 678." required /></label>
+                  <label>Telemóvel <span class="required-label">obrigatório</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" value="+351 " placeholder="+351 912 345 678" title="Introduz um número válido com indicativo internacional." required /><small class="field-help">Portugal (+351) por defeito. Para outro país, substitui pelo respetivo indicativo.</small></label>
                 </div>
               </fieldset>
 
