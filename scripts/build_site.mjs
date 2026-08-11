@@ -8,6 +8,7 @@ const destination = path.join(root, 'dist');
 await fs.rm(destination, {recursive: true, force: true});
 await fs.mkdir(path.join(destination, 'assets', 'videos'), {recursive: true});
 await fs.mkdir(path.join(destination, 'assets', 'images'), {recursive: true});
+await fs.mkdir(path.join(destination, 'assets', 'documents'), {recursive: true});
 await fs.mkdir(path.join(destination, 'socio'), {recursive: true});
 
 for (const page of ['index.html', 'socio.html']) {
@@ -34,6 +35,10 @@ await fs.copyFile(
 await fs.copyFile(
   path.join(root, 'public', 'images', 'familias-escola.png'),
   path.join(destination, 'assets', 'images', 'familias-escola.png'),
+);
+await fs.copyFile(
+  path.join(root, 'src', 'documentos', 'Estatutos Associação de Pais Escola de Pardilhó.pdf'),
+  path.join(destination, 'assets', 'documents', 'estatutos-associacao-pais-pardilho.pdf'),
 );
 
 console.log(`Site preparado em ${destination}`);

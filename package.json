@@ -12,7 +12,9 @@
     "render:9x16": "remotion render src/index.ts AssociacaoPais-9x16 out/associacao-pais-pt-9x16.mp4",
     "render:en:16x9": "remotion render src/index.ts AssociacaoPais-EN-16x9 out/associacao-pais-en-16x9.mp4",
     "render:en:9x16": "remotion render src/index.ts AssociacaoPais-EN-9x16 out/associacao-pais-en-9x16.mp4",
-    "render:temporary:pt:9x16": "remotion render src/index.ts AssociacaoPais-Temporaria-9x16 out/associacao-pais-temporaria-sem-datas-pt-9x16.mp4",
+    "render:temporary:pt:16x9": "remotion render src/index.ts AssociacaoPais-Temporaria-16x9 out/associacao-pais-temporaria-pt-16x9.mp4",
+    "render:temporary:pt:9x16": "remotion render src/index.ts AssociacaoPais-Temporaria-9x16 out/associacao-pais-temporaria-pt-9x16.mp4",
+    "render:temporary:en:16x9": "remotion render src/index.ts AssociacaoPais-Temporary-EN-16x9 out/associacao-pais-temporary-en-16x9.mp4",
     "render:temporary:en:9x16": "remotion render src/index.ts AssociacaoPais-Temporary-EN-9x16 out/associacao-pais-temporary-no-dates-en-9x16.mp4",
     "render:frames": "remotion still src/index.ts AssociacaoPais-16x9 out/preview-16x9.png --frame=1900 && remotion still src/index.ts AssociacaoPais-9x16 out/preview-9x16.png --frame=1900"
   },

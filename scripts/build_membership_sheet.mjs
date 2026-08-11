@@ -20,7 +20,7 @@ const muted = "#52677B";
 const line = "#D9E4EE";
 
 // Listas editáveis usadas nas validações.
-lists.getRange("A1:D1").values = [["Tipo de inscrição", "Estado da inscrição", "Estado do pagamento", "Consentimento"]];
+lists.getRange("A1:D1").values = [["Tipo de inscrição", "Estado da inscrição", "Estado do pagamento", "Grupo de comunicação"]];
 lists.getRange("A2:A3").values = [["Novo sócio"], ["Renovação"]];
 lists.getRange("B2:B5").values = [["Recebida"], ["Em validação"], ["Ativa"], ["Cancelada"]];
 lists.getRange("C2:C6").values = [["Não aplicável"], ["Pendente"], ["Pago"], ["Recusado"], ["Expirado"]];
@@ -33,26 +33,28 @@ lists.showGridLines = false;
 lists.freezePanes.freezeRows(1);
 
 // Folha principal, preparada para 500 inscrições.
-entries.getRange("A1:R1").merge();
+entries.getRange("A1:X1").merge();
 entries.getRange("A1").values = [["Associação de Pais de Pardilhó — Registo de Sócios"]];
-entries.getRange("A1:R1").format = {
+entries.getRange("A1:X1").format = {
   fill: navy,
   font: { bold: true, color: "#FFFFFF", size: 18 },
   verticalAlignment: "center",
   rowHeight: 42,
 };
-entries.getRange("A2:R2").merge();
-entries.getRange("A2").values = [["Importe ou copie aqui as respostas do formulário. Os campos MB WAY ficam reservados para uma fase futura."]];
-entries.getRange("A2:R2").format = { fill: sky, font: { color: muted, italic: true }, rowHeight: 30 };
+entries.getRange("A2:X2").merge();
+entries.getRange("A2").values = [["Uma linha por sócio, preparada para os dados de até cinco filhos. Os campos de pagamento ficam reservados para integração posterior."]];
+entries.getRange("A2:X2").format = { fill: sky, font: { color: muted, italic: true }, rowHeight: 30 };
 
 const headers = [[
   "Data/hora", "ID", "Tipo de inscrição", "Nome completo", "Email", "Telemóvel",
-  "Nome do educando", "Ano/turma", "Estabelecimento", "2.º educando (opcional)",
-  "Consentimento RGPD", "Estado da inscrição", "Data de ativação", "Valor da quota",
-  "Estado do pagamento", "Referência MB WAY", "Data do pagamento", "Notas internas"
+  "Filho 1 — nome", "Filho 1 — ano/turma", "Filho 2 — nome", "Filho 2 — ano/turma",
+  "Filho 3 — nome", "Filho 3 — ano/turma", "Filho 4 — nome", "Filho 4 — ano/turma",
+  "Filho 5 — nome", "Filho 5 — ano/turma", "Grupo de comunicação", "Estado da inscrição",
+  "Data de ativação", "Valor da quota", "Estado do pagamento", "Referência MB WAY",
+  "Data do pagamento", "Notas internas"
 ]];
-entries.getRange("A4:R4").values = headers;
-entries.getRange("A4:R4").format = {
+entries.getRange("A4:X4").values = headers;
+entries.getRange("A4:X4").format = {
   fill: blue,
   font: { bold: true, color: "#FFFFFF" },
   wrapText: true,
@@ -61,45 +63,45 @@ entries.getRange("A4:R4").format = {
 };
 
 // Linha de exemplo claramente identificada, útil para perceber o formato após upload.
-entries.getRange("A5:R5").values = [[
+entries.getRange("A5:X5").values = [[
   new Date("2026-08-09T10:00:00"), "SOC-0001", "Novo sócio", "Exemplo — apagar esta linha",
-  "exemplo@email.pt", "912345678", "Nome do educando", "5.º A", "Escola de exemplo", "",
-  "Sim", "Recebida", null, 0, "Não aplicável", "", null, "Linha demonstrativa"
+  "exemplo@email.pt", "912345678", "Primeiro filho", "5.º A", "Segundo filho", "2.º B",
+  "", "", "", "", "", "", "Sim", "Recebida", null, 0, "Não aplicável", "", null, "Linha demonstrativa"
 ]];
-entries.getRange("A5:R5").format = { fill: "#FFF8E1", font: { color: muted, italic: true } };
+entries.getRange("A5:X5").format = { fill: "#FFF8E1", font: { color: muted, italic: true } };
 
 entries.getRange("A5:A504").format.numberFormat = "yyyy-mm-dd hh:mm";
-entries.getRange("M5:M504").format.numberFormat = "yyyy-mm-dd";
-entries.getRange("N5:N504").format.numberFormat = "€#,##0.00";
-entries.getRange("Q5:Q504").format.numberFormat = "yyyy-mm-dd hh:mm";
+entries.getRange("S5:S504").format.numberFormat = "yyyy-mm-dd";
+entries.getRange("T5:T504").format.numberFormat = "€#,##0.00";
+entries.getRange("W5:W504").format.numberFormat = "yyyy-mm-dd hh:mm";
 entries.getRange("B5:B504").format.numberFormat = "@";
 entries.getRange("F5:F504").format.numberFormat = "@";
-entries.getRange("P5:P504").format.numberFormat = "@";
+entries.getRange("V5:V504").format.numberFormat = "@";
 
 entries.getRange("C5:C504").dataValidation = { rule: { type: "list", formula1: "'Listas'!$A$2:$A$3" } };
-entries.getRange("K5:K504").dataValidation = { rule: { type: "list", formula1: "'Listas'!$D$2:$D$3" } };
-entries.getRange("L5:L504").dataValidation = { rule: { type: "list", formula1: "'Listas'!$B$2:$B$5" } };
-entries.getRange("O5:O504").dataValidation = { rule: { type: "list", formula1: "'Listas'!$C$2:$C$6" } };
+entries.getRange("Q5:Q504").dataValidation = { rule: { type: "list", formula1: "'Listas'!$D$2:$D$3" } };
+entries.getRange("R5:R504").dataValidation = { rule: { type: "list", formula1: "'Listas'!$B$2:$B$5" } };
+entries.getRange("U5:U504").dataValidation = { rule: { type: "list", formula1: "'Listas'!$C$2:$C$6" } };
 
-entries.getRange("A4:R504").format.borders = { insideHorizontal: { style: "thin", color: line } };
-entries.getRange("A5:R504").format.verticalAlignment = "top";
-entries.getRange("D5:R504").format.wrapText = true;
+entries.getRange("A4:X504").format.borders = { insideHorizontal: { style: "thin", color: line } };
+entries.getRange("A5:X504").format.verticalAlignment = "top";
+entries.getRange("D5:X504").format.wrapText = true;
 entries.freezePanes.freezeRows(4);
 entries.freezePanes.freezeColumns(2);
 entries.showGridLines = false;
 
-const widths = [18, 13, 18, 28, 27, 16, 24, 13, 25, 24, 18, 19, 17, 15, 19, 20, 19, 32];
+const widths = [18, 13, 18, 28, 27, 16, 22, 15, 22, 15, 22, 15, 22, 15, 22, 15, 22, 19, 17, 15, 19, 20, 19, 32];
 widths.forEach((width, index) => entries.getRangeByIndexes(0, index, 504, 1).format.columnWidth = width);
 
-const table = entries.tables.add("A4:R504", true, "InscricoesTable");
+const table = entries.tables.add("A4:X504", true, "InscricoesTable");
 table.style = "TableStyleMedium2";
 table.showFilterButton = true;
 table.showBandedRows = true;
 
-entries.getRange("L5:L504").conditionalFormats.add("containsText", { text: "Ativa", format: { fill: mint, font: { color: "#11684C", bold: true } } });
-entries.getRange("L5:L504").conditionalFormats.add("containsText", { text: "Cancelada", format: { fill: "#FFE6E3", font: { color: "#A9342A" } } });
-entries.getRange("O5:O504").conditionalFormats.add("containsText", { text: "Pago", format: { fill: mint, font: { color: "#11684C", bold: true } } });
-entries.getRange("O5:O504").conditionalFormats.add("containsText", { text: "Pendente", format: { fill: "#FFF1CB", font: { color: "#7A5200" } } });
+entries.getRange("R5:R504").conditionalFormats.add("containsText", { text: "Ativa", format: { fill: mint, font: { color: "#11684C", bold: true } } });
+entries.getRange("R5:R504").conditionalFormats.add("containsText", { text: "Cancelada", format: { fill: "#FFE6E3", font: { color: "#A9342A" } } });
+entries.getRange("U5:U504").conditionalFormats.add("containsText", { text: "Pago", format: { fill: mint, font: { color: "#11684C", bold: true } } });
+entries.getRange("U5:U504").conditionalFormats.add("containsText", { text: "Pendente", format: { fill: "#FFF1CB", font: { color: "#7A5200" } } });
 
 // Resumo simples e auditável.
 summary.getRange("A1:F1").merge();
@@ -113,9 +115,9 @@ summary.getRange("A3:B7").values = [
   ["Pagamentos confirmados (futuro)", null],
 ];
 summary.getRange("B4").formulas = [["=COUNTA('Inscrições'!$D$5:$D$504)"]];
-summary.getRange("B5").formulas = [["=COUNTIF('Inscrições'!$L$5:$L$504,\"Ativa\")"]];
-summary.getRange("B6").formulas = [["=COUNTIF('Inscrições'!$L$5:$L$504,\"Recebida\")"]];
-summary.getRange("B7").formulas = [["=COUNTIF('Inscrições'!$O$5:$O$504,\"Pago\")"]];
+summary.getRange("B5").formulas = [["=COUNTIF('Inscrições'!$R$5:$R$504,\"Ativa\")"]];
+summary.getRange("B6").formulas = [["=COUNTIF('Inscrições'!$R$5:$R$504,\"Recebida\")"]];
+summary.getRange("B7").formulas = [["=COUNTIF('Inscrições'!$U$5:$U$504,\"Pago\")"]];
 summary.getRange("A3:B3").format = { fill: blue, font: { bold: true, color: "#FFFFFF" }, rowHeight: 30 };
 summary.getRange("A4:A7").format = { fill: sky, font: { bold: true } };
 summary.getRange("B4:B7").format = { fill: "#FFFFFF", font: { bold: true, color: navy, size: 16 }, horizontalAlignment: "center", numberFormat: "#,##0" };
@@ -134,7 +136,7 @@ console.log(errors.ndjson);
 
 for (const [sheetName, range, fileName] of [
   ["Resumo", "A1:F9", "resumo.png"],
-  ["Inscrições", "A1:R9", "inscricoes.png"],
+  ["Inscrições", "A1:X9", "inscricoes.png"],
   ["Listas", "A1:D6", "listas.png"],
 ]) {
   const preview = await workbook.render({ sheetName, range, scale: 1.2, format: "png" });
@@ -143,3 +145,5 @@ for (const [sheetName, range, fileName] of [
 
 const output = await SpreadsheetFile.exportXlsx(workbook);
 await output.save(`${outputDir}/registo-socios-associacao-pais.xlsx`);
+console.log(`Workbook guardado em ${outputDir}/registo-socios-associacao-pais.xlsx`);
+process.exit(0);

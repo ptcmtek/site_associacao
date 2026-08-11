@@ -50,10 +50,40 @@
               <h2>Participa. A tua voz conta.</h2>
               <p>Preenche os dados necessários para concluir a inscrição ou renovação.</p>
             </div>
-            <div class="google-form-wrap">
-              <iframe title="Formulário de inscrição de sócio" src="https://docs.google.com/forms/d/e/1FAIpQLSe5mY7d7vfrZnnN5AEElUeaEjihUwJ26Hn-Hn8OcKwlKaZWPg/viewform?embedded=true" loading="lazy">A carregar…</iframe>
-              <p class="form-note">Se o formulário não aparecer, <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5mY7d7vfrZnnN5AEElUeaEjihUwJ26Hn-Hn8OcKwlKaZWPg/viewform" target="_blank" rel="noopener">abre-o numa nova janela</a>.</p>
-            </div>
+            <form class="membership-form" id="membership-form">
+              <fieldset>
+                <legend>Dados do sócio</legend>
+                <label>Tipo de inscrição<select name="registrationType" required><option value="Novo sócio">Novo sócio</option><option value="Renovação">Renovação</option></select></label>
+                <label>Nome completo<input name="fullName" autocomplete="name" required /></label>
+                <div class="field-row">
+                  <label>Email<input name="email" type="email" autocomplete="email" required /></label>
+                  <label>Telemóvel<input name="phone" type="tel" autocomplete="tel" required /></label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Filhos</legend>
+                <label class="children-quantity">Número de filhos
+                  <select id="children-quantity" name="childrenQuantity" required>
+                    <option value="" selected disabled>Seleciona</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </label>
+                <div id="children-list" class="children-list"></div>
+              </fieldset>
+
+              <label class="check communication-check">
+                <input name="internalCommunication" type="checkbox" checked />
+                <span>Ao tornar-se sócio da Associação de Pais, será automaticamente integrado no grupo de comunicação interna da Associação que, a partir deste ano letivo, terá uma dinâmica mais regular e ativa, assegurando uma maior proximidade com os pais e uma atualização contínua sobre informações, iniciativas e assuntos relevantes da comunidade escolar.</span>
+              </label>
+
+              <button class="button primary submit" type="submit">Enviar inscrição</button>
+              <p class="form-message" id="form-message" role="status" hidden></p>
+            </form>
           </div>
         </details>
       </section>
@@ -77,7 +107,7 @@
       <section class="section contact"><div><p class="eyebrow">Voltar ao site</p><h2>Conhece a nossa atividade.</h2></div><a class="button secondary" href="/">Página principal</a></section>
     </main>
 
-    <footer><p>© <span id="year"></span> Associação de Pais da Escola de Pardilhó</p><div><a href="/">Início</a><a href="https://www.facebook.com/associacao.escolapardilho" target="_blank" rel="noopener">Facebook</a><a href="#">Privacidade</a></div></footer>
+    <footer><p>© <span id="year"></span> Associação de Pais da Escola de Pardilhó</p><div><a href="/">Início</a><a href="/assets/documents/estatutos-associacao-pais-pardilho.pdf" target="_blank">Estatutos</a><a href="https://www.facebook.com/associacao.escolapardilho" target="_blank" rel="noopener">Facebook</a><a href="#">Privacidade</a></div></footer>
     <script src="/script.js?v=2"></script>
   </body>
 </html>
