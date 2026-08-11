@@ -1,0 +1,4 @@
+# Endereço permanente usado no QR de inscrição.
+# No futuro, alterar apenas o destino para o domínio definitivo.
+/socio /socio.html 200
+/socio/ /socio.html 200

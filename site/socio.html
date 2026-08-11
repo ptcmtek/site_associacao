@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Inscrição de sócio da Associação de Pais da Escola de Pardilhó." />
+    <title>Ser sócio — Associação de Pais de Pardilhó</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Associação de Pais — início">
+        <span class="brand-mark" aria-hidden="true">AP</span>
+        <span>Associação de Pais<br /><small>Escola de Pardilhó</small></span>
+      </a>
+      <nav aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="#video">Vídeo</a>
+        <a href="#associacao">A Associação</a>
+        <a class="nav-cta" href="#inscricao">Ser sócio</a>
+      </nav>
+    </header>
+
+    <main id="inicio">
+      <section class="hero member-hero">
+        <div class="hero-copy">
+          <p class="eyebrow">A escola também é nossa.</p>
+          <h1>Quanto mais sócios formos, mais forte será a voz dos pais.</h1>
+          <p class="lead">Junta-te à Associação de Pais. Participa quando e como puderes — tudo começa por fazer parte.</p>
+          <div class="actions">
+            <a class="button primary attention-cta" href="#inscricao">Quero ser sócio <span aria-hidden="true">→</span></a>
+            <a class="button secondary" href="#video">Ver o vídeo</a>
+          </div>
+        </div>
+        <div class="hero-card" aria-hidden="true"><span>Participa</span><span>Vota</span><span>Decide</span></div>
+      </section>
+
+      <section class="member-entry" aria-labelledby="member-entry-title">
+        <p class="eyebrow">Inscrição ou renovação</p>
+        <h2 id="member-entry-title">Pronto para fazer parte?</h2>
+        <p class="member-entry-lead">O formulário está já aqui. Abre a gaveta, preenche os dados e envia a inscrição.</p>
+        <details class="form-drawer" id="inscricao">
+          <summary>
+            <span><strong>Abrir formulário de sócio</strong><small>Inscrição ou renovação</small></span>
+            <span class="drawer-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="drawer-content signup">
+            <div class="signup-intro">
+              <p class="eyebrow">Faz parte da Associação</p>
+              <h2>Os teus dados</h2>
+              <p>Preenche e envia o formulário. A inscrição fica automaticamente registada na folha de respostas da Associação.</p>
+              <div class="future-payment"><span aria-hidden="true">↗</span><div><strong>Pagamento MB WAY previsto</strong><p>Numa fase futura, a quota poderá ser paga após o envio da inscrição.</p></div></div>
+            </div>
+            <div class="google-form-wrap">
+              <iframe title="Formulário de inscrição de sócio" src="https://docs.google.com/forms/d/e/1FAIpQLSe5mY7d7vfrZnnN5AEElUeaEjihUwJ26Hn-Hn8OcKwlKaZWPg/viewform?embedded=true" loading="lazy">A carregar…</iframe>
+              <p class="form-note">Se o formulário não aparecer, <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5mY7d7vfrZnnN5AEElUeaEjihUwJ26Hn-Hn8OcKwlKaZWPg/viewform" target="_blank" rel="noopener">abre-o numa nova janela</a>.</p>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="section video-section" id="video">
+        <div class="section-heading"><p class="eyebrow">Conhece a nossa missão</p><h2>Vê o vídeo da Associação</h2><p>A versão do vídeo adapta-se à orientação do teu ecrã.</p></div>
+        <div class="video-frame">
+          <video id="association-video" controls playsinline preload="metadata" poster="../public/images/familias-escola.png" data-landscape="../out/associacao-pais-pt-16x9.mp4" data-portrait="../out/associacao-pais-pt-9x16.mp4">O teu navegador não suporta vídeo HTML5.</video>
+        </div>
+      </section>
+
+      <section class="section about" id="associacao">
+        <div><p class="eyebrow">Porque existimos</p><h2>Dar voz. Representar. Construir soluções.</h2></div>
+        <div class="benefit-grid">
+          <article><strong>Ter voz</strong><p>Partilhar ideias e preocupações da comunidade escolar.</p></article>
+          <article><strong>Participar</strong><p>Contribuir com o tempo e a disponibilidade que tiveres.</p></article>
+          <article><strong>Votar</strong><p>Participar democraticamente nas decisões da Associação.</p></article>
+        </div>
+      </section>
+
+      <section class="section contact"><div><p class="eyebrow">Voltar ao site</p><h2>Conhece a nossa atividade.</h2></div><a class="button secondary" href="index.html">Página principal</a></section>
+    </main>
+
+    <footer><p>© <span id="year"></span> Associação de Pais da Escola de Pardilhó</p><div><a href="index.html">Início</a><a href="https://www.facebook.com/associacao.escolapardilho" target="_blank" rel="noopener">Facebook</a><a href="#">Privacidade</a></div></footer>
+    <script src="script.js?v=2"></script>
+  </body>
+</html>

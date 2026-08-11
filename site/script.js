@@ -20,4 +20,15 @@ function selectVideo() {
 selectVideo();
 portraitQuery.addEventListener?.('change', selectVideo);
 
+const formDrawer = document.querySelector('#inscricao.form-drawer');
+const formLinks = document.querySelectorAll('a[href="#inscricao"]');
+
+function openFormDrawer() {
+  if (!formDrawer) return;
+  formDrawer.open = true;
+}
+
+formLinks.forEach((link) => link.addEventListener('click', openFormDrawer));
+if (window.location.hash === '#inscricao') openFormDrawer();
+
 document.querySelector('#year').textContent = new Date().getFullYear();
