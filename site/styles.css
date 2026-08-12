@@ -168,7 +168,7 @@ footer nav a:hover, footer nav a:focus-visible { background: white; color: var(-
 
 @media (max-width: 820px) {
   .site-header { min-height: 74px; }
-  nav > a:not(.nav-cta) { display: none; }
+  .site-header nav > a:not(.nav-cta) { display: none; }
   .brand small { display: none; }
   .hero { min-height: auto; padding: 54px 28px; grid-template-columns: 1fr; gap: 50px; }
   .hero-card { grid-template-columns: repeat(3, 1fr); gap: 7px; transform: none; }
@@ -197,7 +197,7 @@ footer nav a:hover, footer nav a:focus-visible { background: white; color: var(-
   form { padding: 22px; }
   .google-form-wrap { padding: 4px; }
   .google-form-wrap iframe { height: 1080px; }
-  nav { gap: 8px; }
+  .site-header nav { gap: 8px; }
   footer { align-items: stretch; flex-direction: column; }
   footer nav { align-self: flex-start; }
 }
