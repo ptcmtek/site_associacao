@@ -3,7 +3,7 @@ const portraitQuery = window.matchMedia('(orientation: portrait) and (max-width:
 const language = document.documentElement.lang.toLowerCase().startsWith('en') ? 'en' : 'pt';
 const copy = {
   pt: {
-    childName: (number) => `Filho ${number} — nome`,
+    childName: (number) => `Aluno ${number} — nome`,
     className: 'Ano/turma',
     select: 'Seleciona',
     invalidPhone: 'Introduz um número válido, incluindo o indicativo internacional (por exemplo, +351 912 345 678).',
@@ -12,7 +12,7 @@ const copy = {
     reference: 'Referência',
   },
   en: {
-    childName: (number) => `Child ${number} — name`,
+    childName: (number) => `Student ${number} — name`,
     className: 'Year/class',
     select: 'Select',
     invalidPhone: 'Enter a valid number including its international country code (for example, +351 912 345 678).',

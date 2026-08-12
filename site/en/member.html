@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Membership registration for the Parents' Association of Pardilhó School." />
-    <title>Become a member — Parents' Association of Pardilhó School</title>
+    <meta name="description" content="Membership registration for the Parents and Guardians Association of Pardilhó School." />
+    <title>Become a member — Parents and Guardians Association of Pardilhó School</title>
     <link rel="canonical" href="https://associacao-pais-pardilho.pages.dev/en/member/" />
     <link rel="alternate" hreflang="pt-PT" href="https://associacao-pais-pardilho.pages.dev/socio/" />
     <link rel="alternate" hreflang="en" href="https://associacao-pais-pardilho.pages.dev/en/member/" />
@@ -12,7 +12,7 @@
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="/en/" aria-label="Parents' Association — home"><span class="brand-mark" aria-hidden="true">PA</span><span>Parents' Association<br /><small>Pardilhó School</small></span></a>
+      <a class="brand" href="/en/" aria-label="Parents and Guardians Association — home"><span class="brand-mark" aria-hidden="true">PA</span><span>Parents and Guardians Association<br /><small>Pardilhó School</small></span></a>
       <nav aria-label="Main navigation">
         <a href="/en/">Home</a><a href="#video">Video</a><a href="#association">The Association</a><a class="nav-cta" href="#registration">Become a member</a>
         <span class="language-switch" aria-label="Language"><a href="/socio/" lang="pt-PT">PT</a><span aria-hidden="true">|</span><strong>EN</strong></span>
@@ -23,8 +23,8 @@
       <section class="hero member-hero">
         <div class="hero-copy">
           <p class="eyebrow">The School belongs to all of us.</p>
-          <h1>The more members we have, the stronger the voice of parents becomes.</h1>
-          <p class="lead">Join the Parents' Association. Take part whenever and however you can — it all starts with becoming a member.</p>
+          <h1>The more members we have, the stronger the voice of families becomes.</h1>
+          <p class="lead">Join the Parents and Guardians Association. Take part whenever and however you can — it all starts with becoming a member.</p>
           <div class="actions"><a class="button primary attention-cta" href="#registration"><span class="cta-label"><small>Membership open</small>Become a member</span><span class="cta-arrow" aria-hidden="true">→</span></a><a class="button secondary" href="#video">Watch the video</a></div>
         </div>
         <div class="hero-card" aria-hidden="true"><span>Participate</span><span>Vote</span><span>Decide</span></div>
@@ -32,13 +32,14 @@
 
       <section class="member-entry" aria-labelledby="member-entry-title">
         <p class="eyebrow">Join or renew</p><h2 id="member-entry-title">Be part of the Association.</h2><p class="member-entry-lead">Register for the first time or renew your membership for the new school year.</p>
-        <p class="membership-fee"><span aria-hidden="true">✓</span><span>Annual membership fee of just <strong>€5</strong> — around 42 cents per month.</span></p>
+        <aside class="membership-explainer"><span aria-hidden="true">👥</span><div><strong>Membership is individual</strong><p>Each parent or guardian may become a member. More than one person from the same family can register and take part in the Association.</p></div></aside>
+        <p class="membership-fee"><span aria-hidden="true">✓</span><span>Individual annual membership fee of just <strong>€5</strong> — around 42 cents per month.</span></p>
         <details class="form-drawer" id="registration">
           <summary><span><strong>Join or renew</strong><small>Membership form</small></span><span class="drawer-icon" aria-hidden="true">+</span></summary>
           <div class="drawer-content signup">
             <div class="signup-intro"><p class="eyebrow">Membership registration</p><h2>Take part. Your voice matters.</h2><p>Complete the information required to join or renew your membership.</p></div>
             <form class="membership-form" id="membership-form">
-              <p class="membership-fee form-fee"><span aria-hidden="true">✓</span><span>Annual membership fee of just <strong>€5</strong> — around 42 cents per month.</span></p>
+              <p class="membership-fee form-fee"><span aria-hidden="true">✓</span><span>Individual annual membership fee of just <strong>€5</strong> — around 42 cents per month.</span></p>
               <fieldset>
                 <legend>Member details</legend>
                 <label>Registration type<select name="registrationType" required><option value="Novo sócio">New member</option><option value="Renovação">Renewal</option></select></label>
@@ -49,18 +50,18 @@
                 </div>
               </fieldset>
               <fieldset>
-                <legend>Children</legend>
-                <label class="children-quantity">Number of children<select id="children-quantity" name="childrenQuantity" required><option value="" selected disabled>Select</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></label>
+                <legend>Students</legend>
+                <label class="children-quantity">Number of students linked to this registration<select id="children-quantity" name="childrenQuantity" required><option value="" selected disabled>Select</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></label>
                 <div id="children-list" class="children-list"></div>
               </fieldset>
-              <label class="check communication-check"><input name="internalCommunication" type="checkbox" checked /><span>By becoming a member of the Parents' Association, you will automatically join the Association's internal communication group. From this school year onwards, the group will be more regular and active, helping us remain closer to parents and share continuous updates about relevant information, initiatives and school-community matters.</span></label>
+              <label class="check communication-check"><input name="internalCommunication" type="checkbox" checked /><span>By becoming a member of the Parents and Guardians Association, you will automatically join the Association's internal communication group. From this school year onwards, the group will be more regular and active, helping us remain closer to families and share continuous updates about relevant information, initiatives and school-community matters.</span></label>
               <button class="button primary submit" type="submit">Submit registration</button><p class="form-message" id="form-message" role="status" hidden></p>
             </form>
           </div>
         </details>
 
         <dialog class="registration-success" id="registration-success" aria-labelledby="registration-success-title">
-          <div class="success-icon" aria-hidden="true">✓</div><p class="eyebrow">Registration complete</p><h2 id="registration-success-title">Thank you for joining us.</h2><p>We have received your registration. The Parents' Association will contact you to complete the payment, if necessary.</p><p class="success-reference" id="success-reference" hidden></p><button class="button primary" id="close-success" type="button">Continue</button>
+          <div class="success-icon" aria-hidden="true">✓</div><p class="eyebrow">Registration complete</p><h2 id="registration-success-title">Thank you for joining us.</h2><p>We have received your registration. The Parents and Guardians Association will contact you to complete the payment, if necessary.</p><p class="success-reference" id="success-reference" hidden></p><button class="button primary" id="close-success" type="button">Continue</button>
         </dialog>
       </section>
 
@@ -73,7 +74,7 @@
       <section class="section contact"><div><p class="eyebrow">Back to the website</p><h2>Discover our activity.</h2></div><a class="button secondary" href="/en/">Homepage</a></section>
     </main>
 
-    <footer><p>© <span id="year"></span> Parents' Association of Pardilhó School</p><div><a href="/en/">Home</a><a href="/assets/documents/estatutos-associacao-pais-pardilho.pdf" target="_blank">Statutes (PT)</a><a href="https://www.facebook.com/associacao.escolapardilho" target="_blank" rel="noopener">Facebook</a><a href="#">Privacy</a></div></footer>
+    <footer><p>© <span id="year"></span> Parents and Guardians Association of Pardilhó School</p><div><a href="/en/">Home</a><a href="/assets/documents/estatutos-associacao-pais-pardilho.pdf" target="_blank">Statutes (PT)</a><a href="https://www.facebook.com/associacao.escolapardilho" target="_blank" rel="noopener">Facebook</a><a href="#">Privacy</a></div></footer>
     <script src="/country-codes.js?v=1"></script>
     <script src="/script.js?v=4"></script>
   </body>
