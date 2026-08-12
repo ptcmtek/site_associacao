@@ -198,8 +198,10 @@ footer nav a:hover, footer nav a:focus-visible { background: white; color: var(-
   .google-form-wrap { padding: 4px; }
   .google-form-wrap iframe { height: 1080px; }
   .site-header nav { gap: 8px; }
-  footer { align-items: stretch; flex-direction: column; }
-  footer nav { align-self: flex-start; }
+  footer { align-items: stretch; flex-direction: column; gap: 24px; padding-top: 26px; }
+  footer nav { order: -1; align-self: stretch; gap: 10px; padding: 12px; }
+  footer nav a { padding: 10px 13px; }
+  footer > p { padding-inline: 4px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
